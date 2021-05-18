@@ -13,13 +13,26 @@ class Thread {
 public:
     Thread(ThreadPool* pool_ptr) : pool_ptr_(pool_ptr) {
         stopped_ = false;
-        thread_.reset(new thread(&Thread::run, this));
-        thread_->detach();
-        
+        is_initialized_ = false;
+        thread_.reset(new thread(&Thread::run, this));  
+    }
+
+    ~Thread() {
+        cout << "thread dealloc...." << endl;
+        stopped_ = true;
+        cv_.notify_one();
+        thread_->join();
+        cout << "thread dealloc done" << endl;
+
     }
 
     void activate() {
+        cout << "thread activate" << endl;
         cv_.notify_one();
+    }
+
+    bool isInitialized() {
+        return is_initialized_;
     }
 
     void set_task(const TaskPtr& task_ptr) {
@@ -39,5 +52,6 @@ private:
     TaskPtr task_ptr_;
     ThreadPool* pool_ptr_;
     bool stopped_;
+    atomic<bool> is_initialized_;
 };
 DECLARE_CLASS_POINT_TYPE(Thread);

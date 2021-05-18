@@ -5,18 +5,22 @@
 static mutex mtx;
 
 void Thread::run() {
+    is_initialized_ = true;
+    __compiler_barrier();
+    unique_lock<mutex> lck(mtx);
     while(!stopped_) {
-        unique_lock<mutex> lck(mtx);
-        while (cv_.wait_for(lck,chrono::seconds(1)) == cv_status::timeout) {
-            cout << '.' << endl;
-            if (stopped_) {
-                cout << "thread is stopped" << endl;
-                return;
-            }
+        cout << "thread is waiting..." << endl;
+        cv_.wait(lck);
+        if (stopped_) {
+            cout << "thread is stopped" << endl;
+            return;
         }
+        cout << "new job comming!" << endl;
+
         if (task_ptr_) {
             task_ptr_->run();
         }
-        pool_ptr_->enqueue(ThreadPtr(this));
+
+        pool_ptr_->enqueue(this);
     }
 }

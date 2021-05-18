@@ -5,7 +5,9 @@ ContextPtr Context::parse(int argc, char** argv) {
     ContextPtr context_ptr =  make_shared<Context>();
     cout << "begin parse argcs" << endl;
     context_ptr->data_path_ = "/Users/80300388/workspace/clickhouse_data_snapshot/data/";
-    context_ptr->db_and_tables_.emplace_back(make_pair("test_db", "test_table"));
+    context_ptr->replicated_data_path_ = "/Users/80300388/workspace/clickhouse_data_snapshot/copy/";
+
+    context_ptr->db_and_tables_.emplace_back(make_pair("test_db", "cohort_local"));
 
 
     return context_ptr;

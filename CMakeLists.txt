@@ -14,7 +14,7 @@ project(${PROJECT_NAME}
 )
 
 # set language std
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 # set language std and Disable fallback to a previous version
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Disable CXX Syntax EXTENSIONS
@@ -22,10 +22,22 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 include_directories(src)
-add_subdirectory (cmake/config)
-add_subdirectory (cmake/task)
-add_subdirectory (cmake/tools)
+include_directories(contrib/clickhouse)
+include_directories(contrib/poco)
+include_directories(contrib/fmt)
+
+
+add_subdirectory (src/config)
+add_subdirectory (src/task)
+add_subdirectory (src/tools)
+add_subdirectory (src/common)
+
+add_subdirectory (contrib/clickhouse)
+add_subdirectory (contrib/poco)
+add_subdirectory (contrib/fmt)
+
+
 add_executable (${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} Config Tools Task pthread)
+target_link_libraries(${PROJECT_NAME} Config Tools Task ClickHouse Common pthread)
 
 

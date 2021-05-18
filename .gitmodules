@@ -1,0 +1,9 @@
+[submodule "contrib/ClickHouse"]
+	path = contrib/ClickHouse
+	url = https://github.com/ClickHouse/ClickHouse.git
+[submodule "contrib/poco"]
+	path = contrib/poco
+	url = https://github.com/ClickHouse-Extras/poco.git
+[submodule "contrib/fmt"]
+	path = contrib/fmt
+	url = https://github.com/fmtlib/fmt.git

@@ -4,16 +4,21 @@
 using namespace std;
 #include "tools/ThreadPool.h"
 #include "tools/TaskFactory.h"
+#include "common/Loggers.h"
 
 
 int main(int argc, char** argv) {
     cout << "hello" << endl;
 
     ContextPtr context_ptr = Context::parse(argc, argv);
-
+    Logger logger;
+    logger.buildLoggers(context_ptr, logger);
     vector<TaskPtr> tasks = TaskFactory::create(context_ptr);
-    ThreadPool::instance()->set_max_thread_size(context_ptr->max_thread_size());
-    ThreadPool::instance()->process(tasks);
+    ThreadPoolPtr instance = make_shared<ThreadPool>(context_ptr->max_thread_size());
+    instance->process(tasks);
+    cout << "sleep for 5s" << endl;
+    std::this_thread::sleep_for(5s);
 
+    instance.reset();
     return 0;
 }
