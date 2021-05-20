@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.10)
 
 set(CMAKE_BUILD_TYPE debug)
 
@@ -22,7 +22,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 
 include_directories(src)
-include_directories(contrib/clickhouse)
 include_directories(contrib/poco)
 include_directories(contrib/fmt)
 
@@ -32,7 +31,6 @@ add_subdirectory (src/task)
 add_subdirectory (src/tools)
 add_subdirectory (src/common)
 
-add_subdirectory (contrib/clickhouse)
 add_subdirectory (contrib/poco)
 add_subdirectory (contrib/fmt)
 
