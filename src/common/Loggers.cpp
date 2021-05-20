@@ -2,14 +2,16 @@
 #include "config/Context.h"
 
 #include <iostream>
-#include <Poco/SyslogChannel.h>
-#include <Poco/Util/AbstractConfiguration.h>
+#include "Poco/SyslogChannel.h"
+#include "Poco/Util/AbstractConfiguration.h"
 
-#include <Poco/ConsoleChannel.h>
-#include <Poco/File.h>
-#include <Poco/Logger.h>
-#include <Poco/Net/RemoteSyslogChannel.h>
-#include <Poco/Path.h>
+#include "Poco/ConsoleChannel.h"
+#include "Poco/FileChannel.h"
+#include "Poco/PatternFormatter.h"
+#include "Poco/FormattingChannel.h"
+#include "Poco/File.h"
+#include "Poco/Logger.h"
+#include "Poco/Path.h"
 
 namespace DB
 {
@@ -33,13 +35,13 @@ void Loggers::buildLoggers(ContextPtr& context_ptr, Poco::Logger & logger)
     /// Use extended interface of Channel for more comprehensive logging.
     // split = new Poco::SplitterChannel();
 
-    auto log_level = ccontext_ptr->logger_level();
-    const auto log_path = ccontext_ptr->logger_path();
+    auto log_level = context_ptr->logger_level();
+    const auto log_path = context_ptr->logger_path();
 
     createDirectory(log_path);
 
     Poco::AutoPtr<Poco::ConsoleChannel> console = new Poco::ConsoleChannel;
-    Poco::AutoPtr<Poco::ConsoleChannel> log_file = new Poco::FileChannel;
+    Poco::AutoPtr<Poco::FileChannel> log_file = new Poco::FileChannel;
 
     Poco::AutoPtr<Poco::PatternFormatter> patternFormatter(new Poco::PatternFormatter("[%H:%M:%S] [%U(%u)] %p: %t"));
     patternFormatter->setProperty("times", "local");  // 格式化中的时间显示为本地时间

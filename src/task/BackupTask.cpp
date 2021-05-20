@@ -3,6 +3,8 @@
 #include <filesystem>
 #include "task/BackupTask.h"
 #include "clickhouse/Partition.h"
+#include "clickhouse/MergeTreeData.h"
+
 BackupTask::BackupTask(const ContextPtr& context, const string& db, const string& table) 
     : Task(context, db, table) {
 
@@ -23,8 +25,8 @@ void BackupTask::filter_old_data_parts(int last_block_id, map<string, DataPartPt
 }
 
 
-MergeTreeDataPtr load_data_part(const string& data_part_dir) {
-    
+MergeTreeDataPtr BackupTask::load_data_part(const string& data_part_dir) {
+    return MergeTreeDataPtr();
 }
 
 

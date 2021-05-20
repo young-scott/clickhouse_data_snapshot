@@ -38,7 +38,7 @@ public:
     }
 
     string logger_path() {
-        return log_path_;
+        return logger_path_;
     }
 
 public:
@@ -51,8 +51,8 @@ private:
 
     size_t max_thread_size_;
 
-    string log_level_;
-    string log_path_;
+    string logger_level_;
+    string logger_path_;
 
 };
 DECLARE_CLASS_POINT_TYPE(Context);

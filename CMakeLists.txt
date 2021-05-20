@@ -26,18 +26,21 @@ include_directories(contrib/poco)
 include_directories(contrib/fmt/include)
 include_directories(contrib/poco/Foundation/include)
 include_directories(contrib/poco/Util/include)
+include_directories(contrib/poco/Net/include)
 
 
 add_subdirectory (src/config)
 add_subdirectory (src/task)
 add_subdirectory (src/tools)
 add_subdirectory (src/common)
+add_subdirectory (src/clickhouse)
 
-add_subdirectory (contrib/poco)
+add_subdirectory (contrib/poco/Foundation)
 add_subdirectory (contrib/fmt)
 
+add_dependencies(Task ClickHouse)
 
 add_executable (${PROJECT_NAME} src/main.cpp)
-target_link_libraries(${PROJECT_NAME} Config Tools Task ClickHouse Common pthread)
+target_link_libraries(${PROJECT_NAME} Config Tools Task Common Foundation)
 
 

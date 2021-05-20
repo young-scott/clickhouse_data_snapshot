@@ -1,7 +1,8 @@
-#pragma once
 #include <filesystem>
 #include <unordered_set>
 // #include "IO/ReadBuffer.h"
+
+#include "clickhouse/MergeTreeData.h"
 using namespace std;
 
 
@@ -46,9 +47,7 @@ using namespace std;
 //     return std::make_unique<ReadBufferFromFile>(filename_, buffer_size_, flags_, existing_memory_, alignment);
 // }
 
-bool MergeTreeDataPart::checkDataPart(
-    // const NamesAndTypesList & columns_list，
-    // const string & full_relative_path) {
+ErrCode MergeTreeData::checkDataPart(const string & full_relative_path) {
 
     // static const unordered_set<string>  files_without_checksums = {
     //     "checksums.txt", 
@@ -148,5 +147,5 @@ bool MergeTreeDataPart::checkDataPart(
     //     checksums_txt.checkEqual(checksums_data, check_uncompressed);
 
     // return checksums_data;
-    return true;
+    return ErrCode::ERROR_NONE;
 }
