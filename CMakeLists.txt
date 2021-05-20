@@ -23,7 +23,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(src)
 include_directories(contrib/poco)
-include_directories(contrib/fmt)
+include_directories(contrib/fmt/include)
+include_directories(contrib/poco/Foundation/include)
+include_directories(contrib/poco/Util/include)
 
 
 add_subdirectory (src/config)
