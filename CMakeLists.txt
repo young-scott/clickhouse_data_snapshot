@@ -35,7 +35,7 @@ add_subdirectory (src/tools)
 add_subdirectory (src/common)
 add_subdirectory (src/clickhouse)
 
-add_subdirectory (contrib/poco/Foundation)
+add_subdirectory (contrib/poco)
 add_subdirectory (contrib/fmt)
 
 add_dependencies(Task ClickHouse)
