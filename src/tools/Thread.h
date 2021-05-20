@@ -3,6 +3,8 @@
 #include <memory>
 #include <mutex>
 #include <functional>
+#include <condition_variable>
+
 #include "common/ErrCode.h"
 #include "common/Marcos.h"
 #include "task/Task.h"

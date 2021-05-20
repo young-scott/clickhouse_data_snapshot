@@ -1,6 +1,3 @@
-#include <iostream>
-#include <memory>
-#include <condition_variable>
 #include "tools/Thread.h"
 #include "tools/ThreadPool.h"
 static mutex mtx;
