@@ -1,6 +1,7 @@
 #pragma once
 #include <thread>
 #include <memory>
+#include <mutex>
 #include <functional>
 #include "common/ErrCode.h"
 #include "common/Marcos.h"

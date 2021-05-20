@@ -47,7 +47,7 @@ namespace utils {
     }
 
     inline string concat_path(string directory, string file_name) {
-        if (directory.ends_with("/")) {
+        if (directory[directory.size() -1 ] == '/') {
             return directory + file_name;
         }
         return directory + '/' + file_name;

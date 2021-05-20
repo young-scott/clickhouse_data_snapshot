@@ -29,7 +29,7 @@ static std::string createDirectory(const std::string & file)
     return path.toString();
 };
 
-void Loggers::buildLoggers(ContextPtr& context_ptr, Poco::Logger & logger)
+void Loggers::buildLoggers(ContextPtr& context_ptr)
 {
     /// Split logs to ordinary log, error log, syslog and console.
     /// Use extended interface of Channel for more comprehensive logging.
@@ -47,8 +47,6 @@ void Loggers::buildLoggers(ContextPtr& context_ptr, Poco::Logger & logger)
     patternFormatter->setProperty("times", "local");  // 格式化中的时间显示为本地时间
     Poco::AutoPtr<Poco::FormattingChannel> consoleFmtChannel(new Poco::FormattingChannel(patternFormatter, console));
     Poco::AutoPtr<Poco::FormattingChannel> fileFmtChannel(new Poco::FormattingChannel(patternFormatter, log_file));
-
-    logger.setChannel(consoleFmtChannel);
-    logger.close();
-    logger.setLevel(log_level);
+    Poco::Logger::root().setChannel(consoleFmtChannel);
+    Poco::Logger::root().setLevel(log_level);
 }

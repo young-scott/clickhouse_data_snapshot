@@ -1,12 +1,12 @@
 #include <iostream>
 #include <memory>
+#include <condition_variable>
 #include "tools/Thread.h"
 #include "tools/ThreadPool.h"
 static mutex mtx;
 
 void Thread::run() {
     is_initialized_ = true;
-    __compiler_barrier();
     unique_lock<mutex> lck(mtx);
     while(!stopped_) {
         cout << "thread is waiting..." << endl;

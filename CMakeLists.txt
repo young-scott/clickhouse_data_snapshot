@@ -14,7 +14,7 @@ project(${PROJECT_NAME}
 )
 
 # set language std
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 # set language std and Disable fallback to a previous version
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Disable CXX Syntax EXTENSIONS

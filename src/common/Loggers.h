@@ -7,6 +7,6 @@
 class Loggers
 {
 public:
-    static void buildLoggers(ContextPtr& context_ptr, Poco::Logger & logger);
+    static void buildLoggers(ContextPtr& context_ptr);
 
 };

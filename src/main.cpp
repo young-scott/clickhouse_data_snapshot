@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
     cout << "hello" << endl;
 
     ContextPtr context_ptr = Context::parse(argc, argv);
-    Loggers::buildLoggers(context_ptr,  Poco::Logger::root());
+    Loggers::buildLoggers(context_ptr);
     vector<TaskPtr> tasks = TaskFactory::create(context_ptr);
     ThreadPoolPtr instance = make_shared<ThreadPool>(context_ptr->max_thread_size());
     instance->process(tasks);
