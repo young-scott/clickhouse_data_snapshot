@@ -8,7 +8,7 @@ ContextPtr Context::parse(int argc, char** argv) {
     context_ptr->replicated_data_path_ = "/Users/80300388/workspace/clickhouse_data_snapshot/copy/";
 
     context_ptr->db_and_tables_.emplace_back(make_pair("test_db", "cohort_local"));
-    logger_level_="debug";
+    context_ptr->logger_level_="debug";
 
     return context_ptr;
 }
